@@ -1,0 +1,114 @@
+
+.mat-toolbar
+{
+background-color: darkcyan;
+height: 80px;
+}
+
+.div1
+{
+background-color:white;
+height: 30em;
+width: 32em;
+border-radius: 10px;
+border-style: solid;
+border-color: darkcyan;
+margin-inline-start: 7em;
+margin-top: 7em;
+float: left;
+
+max-height: 30em;
+overflow-y: scroll;
+
+}
+
+
+h2
+{
+    margin-inline-start: 6em;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.mat-form-field
+{
+    margin-inline-start: 7em;
+    outline-color: darkcyan;
+   
+}
+
+.mat-raised-button
+{
+    
+
+    background-color: whitesmoke;
+    height:30px;
+    width: 30px;
+    color: black;
+    border-radius: 40px;
+    
+}
+
+
+.div2
+{
+    float: right;
+    background-color:white;
+    height: 30em;
+    width: 32em;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: darkcyan;
+    margin-inline-end: 7em;
+    margin-top: 7em;
+    max-height: 30em;
+    overflow-y: scroll;
+}
+
+.floatright
+{
+float: right;
+}
+
+
+.addlabel
+{
+    
+    margin-inline-start: 5em;   
+    padding: 10px;
+    color: red;
+    
+}
+.removelabel
+{    
+    padding: 10px;
+    color: red;
+    
+}
+
+.addlabel:hover,.removelabel:hover
+{
+    background-color: whitesmoke;
+}
+
+
+
+.margin
+{
+margin-inline-start: 2em;
+}
+
+input
+{
+    margin-inline-start: 2em;
+    width: 15em;
+    height: 20px;
+}
+
+.input2
+
+{
+    width: 20em;
+    height: 30px;
+}
