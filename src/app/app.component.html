@@ -1,16 +1,23 @@
 <div class="div1">
   <mat-toolbar>
-    <h2 (click)="getfiredata()">Waiting List</h2>
+    <h2 >Waiting List</h2>
   </mat-toolbar>
 
   <br>
   <br>
 <div *ngFor="let value of list;let i = index;">
-  <input matInput  placeholder="{{value.firstname}}" disabled>
-  <mat-label class="addlabel" (click)="add(i)" > Add</mat-label>
-  <mat-label class="removelabel" (click)="remove(i)">Remove</mat-label>
+  <div class="border">
+    
+  <input matInput class="input" placeholder="&nbsp;{{i+1}}&nbsp;&nbsp;&nbsp;{{value.firstname}}" disabled>
+  <input matInput class="timestamp" placeholder="&nbsp;&nbsp;{{value.timestamp |date:'h:mm a ' }} {{value.timestamp |date }}" disabled>
+  <br>
+  <br>  
+  <button mat-raised-button  class="mat-raised-button1" (click)="add(i)">Add</button>&nbsp;
+  <button mat-raised-button class="mat-raised-button2" (click)="remove(i)">Remove</button>
 <br>
-<br>
+
+<hr>
+</div>
 </div>
 
 </div>
@@ -24,9 +31,13 @@
   <br>
   <div *ngFor="let value of selected; let i = index; ">
     
-    <input class="input2" matInput  placeholder="{{i+1}} &nbsp;&nbsp;{{value.firstname}}">
-    <mat-label class="removelabel" (click)="removeselected(i)">Remove</mat-label>
-  
+    <input class="input2select" matInput  placeholder="&nbsp;{{i+1}}. &nbsp;{{value.firstname}}&nbsp;&nbsp;&nbsp;">
+    <input class="timestamp" matInput  placeholder="&nbsp;&nbsp;{{value.timestamp |date:'h:mm a ' }} {{value.timestamp |date }}">
+    
+    &nbsp;
+    <button mat-raised-button class="mat-raised-button2" (click)="removeselected(i)">Remove</button>
+  <br>
+  <br>
   </div>
 
   <br>

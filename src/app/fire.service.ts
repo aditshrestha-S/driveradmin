@@ -15,7 +15,7 @@ export class FireService {
    return   this.fire.collection('User').snapshotChanges();
   }
 
-  getsfiredata()
+  getselectedfiredata()
   {
    return   this.fire.collection('Admin').snapshotChanges();
   }

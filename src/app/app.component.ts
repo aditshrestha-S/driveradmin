@@ -20,6 +20,7 @@ export class AppComponent {
                {
                 this.getfiredata();
                 this.getselectedfiredata();
+                
               }
 
   
@@ -42,7 +43,7 @@ export class AppComponent {
 
  remove(index)
   {
-    console.log(this.list[index].id);
+    
     this.Fire.doc('User/'+this.list[index].id).delete();
     
   }
@@ -50,7 +51,9 @@ export class AppComponent {
 //getting record from firebase function
   list:User[];
   data:User;
-
+j;
+k;
+temp:User;
   getfiredata()
   {
   this.fireService.getfiredata().subscribe(actionArray =>{
@@ -61,8 +64,20 @@ export class AppComponent {
       }
       
     });
-    this.driver=this.list;
-    
+    //this.driver=this.list;
+    for(this.k=0;this.k<this.list.length;this.k++)
+  {
+    for(this.j=this.i+1;this.j<this.list.length;this.j++)
+    {
+      if(this.list[this.k].timestamp < this.list[this.j].timestamp)
+      {
+       // this.temp=this.list[this.i];
+        this.temp=this.list[this.k];
+        this.list[this.k]=this.list[this.j];
+        this.list[this.j]=this.temp;
+      }
+    }
+  }
   
   })
   
@@ -70,12 +85,15 @@ export class AppComponent {
 //function ends here
 
 waitsample;
+today;
 fireadd(name)
 {
+  this.today=Date();
+
   this.waitsample={
 
-    "firstname":name
-    
+    "firstname":name,
+    "timestamp":this.today
       }
   
   this.Fire.collection('Admin').add(this.waitsample);
@@ -84,14 +102,15 @@ fireadd(name)
   
   }
   
-
 //function ends
+
+//function for getting selected user
 
 selected:User[];
 
 getselectedfiredata()
 {
-this.fireService.getsfiredata().subscribe(actionArray =>{
+this.fireService.getselectedfiredata().subscribe(actionArray =>{
   this.selected=actionArray.map(item=>{
     return{
       id: item.payload.doc.id,
@@ -99,11 +118,25 @@ this.fireService.getsfiredata().subscribe(actionArray =>{
     }
     
   });
-
+  console.log(this.selected);
+  for(this.k=0;this.k<this.selected.length;this.k++)
+  {
+    for(this.j=this.i+1;this.j<this.selected.length;this.j++)
+    {
+      if(this.selected[this.k].timestamp < this.selected[this.j].timestamp)
+      {
+       // this.temp=this.list[this.i];
+        this.temp=this.selected[this.k];
+        this.selected[this.k]=this.selected[this.j];
+        this.selected[this.j]=this.temp;
+      }
+    }
+  }
 })
 
 }
 
+//function for remove student form selected list
 removeselected(index)
   {
     
