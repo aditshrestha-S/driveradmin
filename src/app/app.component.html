@@ -44,12 +44,9 @@
     
     <input class="input2select" matInput  placeholder="&nbsp;{{i+1}}. &nbsp;{{value.firstname}}&nbsp;&nbsp;&nbsp;">
     <input class="timestamp" matInput  placeholder="&nbsp;&nbsp;{{value.timestamp |date:'h:mm a ' }} {{value.timestamp |date }}">
-    <input class="input2select" matInput  placeholder="&nbsp;&nbsp;{{value.material}}">
-    
-    &nbsp;
+    <input class="inputmaterial" matInput  placeholder="&nbsp;&nbsp;{{value.material}}">&nbsp;
     <button mat-raised-button class="selectremove" (click)="removeselected(i)">Remove</button>
   <br>
-  
   <br>
   <hr>
   </div>
@@ -65,3 +62,4 @@
 <br>
 <br>
 <br>
+

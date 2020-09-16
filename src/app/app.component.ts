@@ -3,7 +3,8 @@ import { FireService } from './fire.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from './user.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import {MatDialog} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +16,20 @@ export class AppComponent {
 
   constructor(private fireService: FireService,
               private Fire:AngularFirestore,
-              private _snackBar:MatSnackBar){}
+              private _snackBar:MatSnackBar,
+              public dialog: MatDialog){}
 
 
               ngOnInit()
                {
+                this.openDialog();
                 this.getfiredata();
                 this.getselectedfiredata();
                 
+              }
+
+              openDialog() {
+                this.dialog.open(DialogComponent);
               }
 
   
@@ -51,10 +58,14 @@ export class AppComponent {
   }
 
 //getting record from firebase function
+waitinglistlength=0;
+
   list:User[];
   data:User;
 j;
 k;
+llength=0;
+added;
 temp:User;
   getfiredata()
   {
@@ -64,8 +75,23 @@ temp:User;
         id: item.payload.doc.id,
         ...item.payload.doc.data()  as User
       }
+
+     
       
     });
+
+    
+    if(this.list.length > this.waitinglistlength)
+    {
+      this.playAudio();
+      
+      this.waitinglistlength=this.list.length;
+     
+
+    }
+
+
+
     //this.driver=this.list;
     for(this.k=0;this.k<this.list.length;this.k++)
   {
@@ -108,7 +134,7 @@ fireadd(name)
       {
         this.errorflag=false;
         this.Fire.collection('Admin').add(this.waitsample);
-        this.playAudio();
+        
         this.Category="";
       }
   
@@ -162,19 +188,22 @@ removeselected(index)
 
 //material type values
 
-topics=['Raul','Juan','Bulmaro','Jesus','Jimmy','Ray','Valente','Freibel 1','Freibel 2','Alco'];
+topics=['metal ALCO','metal Schnitzer','dirty concrete','clean concrete','trash hollister','trash Los Banos','ADC','cardboard','Sheetrock'];
 Category="";
 
-
+//
 //
 // Playing sound
 //
 playAudio(){
+  
   let audio = new Audio();
   audio.src = "./assets/audio3.mp3";
   audio.load();
   audio.play();
-  this.openSnackBarsuccess();
+  this.openSnackBarsuccess("new entry");
+  
+ 
 }
 
 //
@@ -184,10 +213,10 @@ playAudio(){
   //snacknbar function for success
 
   durationInSeconds = 2;
-  openSnackBarsuccess() 
+  openSnackBarsuccess(message) 
   {
     
-    this._snackBar.open("Added Successfully!!", "", 
+    this._snackBar.open(message, "", 
     {
       duration: this.durationInSeconds * 1000,
       panelClass: ['success-snackbar']

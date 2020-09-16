@@ -1,0 +1,20 @@
+h1
+{
+    color: blue;
+    text-align: center;
+    font-weight: bold;
+}
+
+h2
+{
+    font-size: 15px;
+}
+
+.mat-button
+{
+    margin-inline-start: 5em;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    
+}
