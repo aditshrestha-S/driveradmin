@@ -4,22 +4,31 @@
   </mat-toolbar>
 
   <br>
-  <br>
+  
 <div *ngFor="let value of list;let i = index;">
-  <div class="border">
+  
     
   <input matInput class="input" placeholder="&nbsp;{{i+1}}&nbsp;&nbsp;&nbsp;{{value.firstname}}" disabled>
   <input matInput class="timestamp" placeholder="&nbsp;&nbsp;{{value.timestamp |date:'h:mm a ' }} {{value.timestamp |date }}" disabled>
   <br>
   <br>  
+  <mat-form-field class="mat-form-field1" appearance="outline">
+    <mat-label>Material Type</mat-label>
+    <mat-select  [(ngModel)]="Category" disableRipple>
+        
+      <mat-option *ngFor="let value of topics"   value="{{value}}"  >{{value}}</mat-option>
+     
+    </mat-select>
+  </mat-form-field>
   <button mat-raised-button  class="mat-raised-button1" (click)="add(i)">Add</button>&nbsp;
   <button mat-raised-button class="mat-raised-button2" (click)="remove(i)">Remove</button>
-<br>
+  <small style="color: red;margin-inline-start: 3em;" *ngIf="errorflag">Please select option </small>
 
-<hr>
-</div>
-</div>
+  <hr>
+  <br>
 
+
+</div>
 </div>
 
 
@@ -35,15 +44,24 @@
     
     <input class="input2select" matInput  placeholder="&nbsp;{{i+1}}. &nbsp;{{value.firstname}}&nbsp;&nbsp;&nbsp;">
     <input class="timestamp" matInput  placeholder="&nbsp;&nbsp;{{value.timestamp |date:'h:mm a ' }} {{value.timestamp |date }}">
+    <input class="input2select" matInput  placeholder="&nbsp;&nbsp;{{value.material}}">
     
     &nbsp;
     <button mat-raised-button class="selectremove" (click)="removeselected(i)">Remove</button>
   <br>
+  
   <br>
+  <hr>
   </div>
 
   <br>
   <br>
   
-
+  
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

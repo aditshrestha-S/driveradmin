@@ -9,7 +9,7 @@ height: 80px;
 .div1
 {
 background-color:white;
-height: 30em;
+height: 35em;
 width: 32em;
 border-radius: 10px;
 border-style: solid;
@@ -18,7 +18,7 @@ margin-inline-start: 7em;
 margin-top: 7em;
 float: left;
 
-max-height: 30em;
+max-height: 35em;
 overflow-y: scroll;
 
 }
@@ -35,15 +35,16 @@ h2
 
 .mat-form-field
 {
-    margin-inline-start: 7em;
+    margin-inline-start: 1em;
     outline-color: darkcyan;
+    width: 12em;
    
 }
 
 .mat-raised-button1
 {
     
-    margin-inline-start: 14em;
+    margin-inline-start: 2em;
     background-color: whitesmoke;
     color: red;
     
@@ -67,16 +68,16 @@ h2
 
 .div2
 {
-    float: right;
+    float: left;
     background-color:white;
-    height: 30em;
+    height: 35em;
     width: 32em;
     border-radius: 10px;
     border-style: solid;
     border-color: darkcyan;
-    margin-inline-end: 7em;
+    margin-inline-start: 10em;
     margin-top: 7em;
-    max-height: 30em;
+    max-height: 35em;
     overflow-y: scroll;
 }
 
@@ -98,7 +99,7 @@ h2
     
 }*/
 
-.mat-raised-button1:hover,.mat-raised-button2:hover
+.mat-raised-button1:hover,.mat-raised-button2:hover ,.selectremove:hover
 {
     border-color: red;
     border-style: solid;
@@ -145,6 +146,17 @@ h2
     text-align: center;
 
 }
+.selectremove
+        {
+        
+        margin-top: 1em;
+        
+        background-color: whitesmoke;
+        color: red;
+        border-radius: 10px;
+        text-align: left;
+             
+    }
 
 
 /*////////////////////////////////////////////
@@ -170,7 +182,7 @@ h2
     .div1
     {
         background-color:white;
-        height: 30em;
+        height: 35em;
         width: 20em;
         border-radius: 10px;
         border-style: solid;
@@ -179,7 +191,7 @@ h2
         margin-top: 5em;
         float: left;
 
-        max-height: 30em;
+        max-height: 35em;
         overflow-y: scroll;
 
     }
@@ -220,10 +232,19 @@ h2
         font-size: 11px;
     
     }
+
+    .mat-form-field
+    {
+        margin-inline-start: 2em;
+        outline-color: blue;
+        width: 14em;
+       
+    }
+
     .mat-raised-button1
     {
         
-        margin-inline-start: 8em;
+        margin-inline-start: 4em;
         background-color: whitesmoke;
         color: red;
         width: 2em;
@@ -255,16 +276,16 @@ h2
     .div2
     {
         
-        float:unset;
+        float:left;
         margin-top: 2em;
         margin-inline-start: 2em;
         background-color:white;
-        height: 30em;
+        height: 35em;
         width: 20em;
         border-radius: 10px;
         border-style: solid;
         border-color: darkcyan;
-        max-height: 30em;
+        max-height: 35em;
         overflow-y: scroll;
     }
 

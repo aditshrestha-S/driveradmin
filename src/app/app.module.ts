@@ -22,6 +22,9 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { FireService } from './fire.service';
+import { FormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { FireService } from './fire.service';
     MatExpansionModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.FirebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
+    MatSnackBarModule
 
   ],
   providers: [FireService],

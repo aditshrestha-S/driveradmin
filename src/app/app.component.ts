@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FireService } from './fire.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from './user.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class AppComponent {
   title = 'driveradmin';
 
   constructor(private fireService: FireService,
-              private Fire:AngularFirestore){}
+              private Fire:AngularFirestore,
+              private _snackBar:MatSnackBar){}
 
 
               ngOnInit()
@@ -86,6 +88,7 @@ temp:User;
 
 waitsample;
 today;
+errorflag=false;
 fireadd(name)
 {
   this.today=Date();
@@ -93,12 +96,21 @@ fireadd(name)
   this.waitsample={
 
     "firstname":name,
-    "timestamp":this.today
+    "timestamp":this.today,
+    "material":this.Category
       }
   
-  this.Fire.collection('Admin').add(this.waitsample);
-  console.log("call");
-  
+      if(this.Category =="")
+      {
+        this.errorflag=true;
+      }
+      else
+      {
+        this.errorflag=false;
+        this.Fire.collection('Admin').add(this.waitsample);
+        this.playAudio();
+        this.Category="";
+      }
   
   }
   
@@ -118,7 +130,10 @@ this.fireService.getselectedfiredata().subscribe(actionArray =>{
     }
     
   });
-  console.log(this.selected);
+  
+  //
+  // Sorting Selected list
+  //
   for(this.k=0;this.k<this.selected.length;this.k++)
   {
     for(this.j=this.i+1;this.j<this.selected.length;this.j++)
@@ -144,5 +159,41 @@ removeselected(index)
     
   }
 
+
+//material type values
+
+topics=['Raul','Juan','Bulmaro','Jesus','Jimmy','Ray','Valente','Freibel 1','Freibel 2','Alco'];
+Category="";
+
+
+//
+// Playing sound
+//
+playAudio(){
+  let audio = new Audio();
+  audio.src = "./assets/audio3.mp3";
+  audio.load();
+  audio.play();
+  this.openSnackBarsuccess();
+}
+
+//
+//Snackbar
+//
+
+  //snacknbar function for success
+
+  durationInSeconds = 2;
+  openSnackBarsuccess() 
+  {
+    
+    this._snackBar.open("Added Successfully!!", "", 
+    {
+      duration: this.durationInSeconds * 1000,
+      panelClass: ['success-snackbar']
+    });
+  }
+  //snacknbar function for success ends here
+  
 
 }
