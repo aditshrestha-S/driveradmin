@@ -23,6 +23,8 @@
 </div>
 
 
+
+
 <div class="div2">
   <mat-toolbar>
     <h2>Selected List</h2>
@@ -35,7 +37,7 @@
     <input class="timestamp" matInput  placeholder="&nbsp;&nbsp;{{value.timestamp |date:'h:mm a ' }} {{value.timestamp |date }}">
     
     &nbsp;
-    <button mat-raised-button class="mat-raised-button2" (click)="removeselected(i)">Remove</button>
+    <button mat-raised-button class="selectremove" (click)="removeselected(i)">Remove</button>
   <br>
   <br>
   </div>
