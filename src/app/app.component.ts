@@ -43,8 +43,8 @@ export class AppComponent {
   add(index)
   {
    
-   this.fireadd(this.list[index].firstname);
-   this.remove(index);  
+   this.fireadd(this.list[index].firstname,index);
+   //this.remove(index);  
 
     
   }
@@ -115,7 +115,7 @@ temp:User;
 waitsample;
 today;
 errorflag=false;
-fireadd(name)
+fireadd(name,index)
 {
   this.today=Date();
 
@@ -134,8 +134,8 @@ fireadd(name)
       {
         this.errorflag=false;
         this.Fire.collection('Admin').add(this.waitsample);
-        
         this.Category="";
+        this.remove(index);
       }
   
   }
