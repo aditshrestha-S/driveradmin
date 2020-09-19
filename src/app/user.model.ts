@@ -4,6 +4,7 @@ export class User{
     firstname:string;
     timestamp:Date;
     material:string;
-    mobileno:string;    s
+    mobileno:string;    
+    emailid:string;
     
 }

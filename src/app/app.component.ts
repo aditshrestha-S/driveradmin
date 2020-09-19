@@ -230,7 +230,14 @@ sendsms(i)
 {
   this.fireService.datapost(this.list[i].mobileno);
   console.log("call");
+  this.sendmail(i);
   
+}
+
+sendmail(i)
+{
+  this.fireService.datamail(this.list[i].emailid);
+  console.log(" mail call");
 }
 
 //getting responce function
