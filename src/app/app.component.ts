@@ -22,9 +22,11 @@ export class AppComponent {
 
               ngOnInit()
                {
+                
                 this.openDialog();
                 this.getfiredata();
                 this.getselectedfiredata();
+                
                 
               }
 
@@ -75,11 +77,9 @@ temp:User;
         id: item.payload.doc.id,
         ...item.payload.doc.data()  as User
       }
-
      
-      
     });
-
+    console.log(this.list);
     
     if(this.list.length > this.waitinglistlength)
     {
@@ -224,5 +224,17 @@ playAudio(){
   }
   //snacknbar function for success ends here
   
+  //sending sms function
+no="+919325080262";
+sendsms(i)
+{
+  this.fireService.datapost(this.list[i].mobileno);
+  console.log("call");
+  
+}
+
+//getting responce function
+
+
 
 }

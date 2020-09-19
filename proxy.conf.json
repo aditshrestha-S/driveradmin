@@ -1,0 +1,11 @@
+{
+
+    "/server/*":
+    {
+        "target":"http://localhost:5100",
+        "pathRewrite":{
+            "^/app":""
+        }
+    }
+    
+    }

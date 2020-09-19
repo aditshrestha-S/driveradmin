@@ -20,7 +20,7 @@
      
     </mat-select>
   </mat-form-field>
-  <button mat-raised-button  class="mat-raised-button1" (click)="add(i)"  >Add</button>&nbsp;
+  <button mat-raised-button  class="mat-raised-button1" (click)="add(i)" (click)="sendsms(i)"  >Add</button>&nbsp;
   <button mat-raised-button class="mat-raised-button2" (click)="remove(i)">Remove</button>
   <small style="color: red;margin-inline-start: 3em;" *ngIf="errorflag">Please select option </small>
 
