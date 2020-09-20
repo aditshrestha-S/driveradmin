@@ -53,10 +53,13 @@ datamail(emailid)
       "emailid":emailid
     }
 
+    if(emailid.length != 0)
+    {
     this.http.post(this.data_urlmail,this.sample).toPromise().then((data:any)=>{
       console.log(data);
-    });
     
+    });
+  }
 
   }
 

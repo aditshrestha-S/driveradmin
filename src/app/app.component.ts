@@ -83,7 +83,7 @@ temp:User;
     
     if(this.list.length > this.waitinglistlength)
     {
-      this.playAudio();
+      this.playAudio(this.waitinglistlength);
       
       this.waitinglistlength=this.list.length;
      
@@ -134,6 +134,7 @@ fireadd(name,index)
       {
         this.errorflag=false;
         this.Fire.collection('Admin').add(this.waitsample);
+        this.sendsms(index);
         this.Category="";
         this.remove(index);
       }
@@ -195,14 +196,24 @@ Category="";
 //
 // Playing sound
 //
-playAudio(){
+playAudio(fisrttime){
   
-  let audio = new Audio();
-  audio.src = "./assets/audio3.mp3";
-  audio.load();
-  audio.play();
+  let audio1= new Audio();
+  let audio2 = new Audio();
+  
+  //sound
+  audio1.src = "./assets/tweet.mp3";
+  audio1.load();
+  audio1.play();
+
+  //vibration
+  audio2.src = "./assets/vibration1.mp3";
+  audio2.load();
+  audio2.play();
+  if(fisrttime != 0)
+  {
   this.openSnackBarsuccess("new entry");
-  
+  }
  
 }
 
