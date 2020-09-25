@@ -17,7 +17,8 @@ export class AppComponent {
   constructor(private fireService: FireService,
               private Fire:AngularFirestore,
               private _snackBar:MatSnackBar,
-              public dialog: MatDialog){}
+              public dialog: MatDialog
+              ){}
 
 
               ngOnInit()
@@ -79,11 +80,11 @@ temp:User;
       }
      
     });
-    console.log(this.list);
+    //console.log(this.list);
     
     if(this.list.length > this.waitinglistlength)
     {
-      this.playAudio(this.waitinglistlength);
+      this.playAudio();
       
       this.waitinglistlength=this.list.length;
      
@@ -196,7 +197,8 @@ Category="";
 //
 // Playing sound
 //
-playAudio(fisrttime){
+playAudio()
+{
   
   let audio1= new Audio();
   let audio2 = new Audio();
@@ -210,10 +212,11 @@ playAudio(fisrttime){
   audio2.src = "./assets/vibration1.mp3";
   audio2.load();
   audio2.play();
-  if(fisrttime != 0)
-  {
+  
+  
+  
   this.openSnackBarsuccess("new entry");
-  }
+  
  
 }
 
@@ -236,10 +239,10 @@ playAudio(fisrttime){
   //snacknbar function for success ends here
   
   //sending sms function
-no="+919325080262";
+//no="+919325080262";
 sendsms(i)
 {
-  this.fireService.datapost(this.list[i].mobileno);
+  this.fireService.datapost(this.list[i].mobileno,this.list[i].firstname,this.Category);
   console.log("call");
   this.sendmail(i);
   

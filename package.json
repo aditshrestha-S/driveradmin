@@ -24,6 +24,7 @@
     "@angular/router": "~9.1.0-next.1",
     "@material/dialog": "^7.0.0",
     "@material/snackbar": "^7.0.0",
+    "angular-vibrator": "^0.2.0",
     "firebase": "^7.20.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

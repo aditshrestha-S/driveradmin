@@ -12,6 +12,8 @@ export class FireService {
               private http: HttpClient) { }
 
               public data_urlsms="https://driversmsserver.herokuapp.com/sent";
+              
+
               public data_urlmail="https://driversmsserver.herokuapp.com/mail";
 
   formData:User;
@@ -27,18 +29,21 @@ export class FireService {
 
 //sending sms function
 sample;
-datapost(var1)
+datapost(varno,varname,varmaterial)
   {
-    console.log(var1);
+   
     this.sample={
 
-      "no":var1
+      "no":varno,
+      "name":varname,
+      "material":varmaterial
     }
 
     this.http.post(this.data_urlsms,this.sample).toPromise().then((data:any)=>{
-      console.log(data);
+      
     });
     console.log("Function call")
+    
 
   }
 

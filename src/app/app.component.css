@@ -13,7 +13,7 @@ height: 35em;
 width: 32em;
 border-radius: 10px;
 border-style: solid;
-border-color: darkcyan;
+border-color: blue;
 margin-inline-start: 7em;
 margin-top: 7em;
 float: left;
@@ -74,7 +74,7 @@ h2
     width: 32em;
     border-radius: 10px;
     border-style: solid;
-    border-color: darkcyan;
+    border-color: blue;
     margin-inline-start: 10em;
     margin-top: 7em;
     max-height: 35em;
@@ -199,7 +199,7 @@ h2
         width: 20em;
         border-radius: 10px;
         border-style: solid;
-        border-color: darkcyan;
+        border-color: blue;
         margin-inline-start: 2em;
         margin-top: 5em;
         float: left;
@@ -297,7 +297,7 @@ h2
         width: 20em;
         border-radius: 10px;
         border-style: solid;
-        border-color: darkcyan;
+        border-color: blue;
         max-height: 35em;
         overflow-y: scroll;
     }
