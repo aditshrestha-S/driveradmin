@@ -2,9 +2,15 @@ import { Component } from '@angular/core';
 import { FireService } from './fire.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from './user.model';
+import { Record } from './Record.model';
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import {saveAs} from 'file-saver';
+import { Driver } from './drivername.model';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +20,15 @@ import { DialogComponent } from './dialog/dialog.component';
 export class AppComponent {
   title = 'driveradmin';
 
+  public data_download="https://driversmsserver.herokuapp.com/download";
+
+
   constructor(private fireService: FireService,
               private Fire:AngularFirestore,
               private _snackBar:MatSnackBar,
-              public dialog: MatDialog
+              public dialog: MatDialog,
+              private http: HttpClient,
+              private Router:Router
               ){}
 
 
@@ -27,8 +38,8 @@ export class AppComponent {
                 this.openDialog();
                 this.getfiredata();
                 this.getselectedfiredata();
-                
-                
+                //this.getrecords();
+                this.getdriver();
               }
 
               openDialog() {
@@ -116,6 +127,7 @@ temp:User;
 waitsample;
 today;
 errorflag=false;
+
 fireadd(name,index)
 {
   this.today=Date();
@@ -135,6 +147,7 @@ fireadd(name,index)
       {
         this.errorflag=false;
         this.Fire.collection('Admin').add(this.waitsample);
+        this.Fire.collection('Records').add(this.waitsample);
         this.sendsms(index);
         this.Category="";
         this.remove(index);
@@ -143,6 +156,9 @@ fireadd(name,index)
   }
   
 //function ends
+
+
+
 
 //function for getting selected user
 
@@ -190,7 +206,7 @@ removeselected(index)
 
 //material type values
 
-topics=['metal ALCO','metal Schnitzer','dirty concrete','clean concrete','trash hollister','trash Los Banos','ADC','cardboard','Sheetrock'];
+topics=['metal ALCO','metal Schnitzer','dirty concrete','clean concrete','trash hollister','trash Los Banos','ADC','cardboard','Sheetrock','Wood'];
 Category="";
 
 //
@@ -220,6 +236,8 @@ playAudio()
  
 }
 
+
+
 //
 //Snackbar
 //
@@ -238,12 +256,20 @@ playAudio()
   }
   //snacknbar function for success ends here
   
+
+
+
+
+
   //sending sms function
 //no="+919325080262";
 sendsms(i)
 {
   this.fireService.datapost(this.list[i].mobileno,this.list[i].firstname,this.Category);
-  console.log("call");
+
+  this.fireService.recordpost(this.list[i].firstname,this.Category,this.list[i].timestamp);
+
+  
   this.sendmail(i);
   
 }
@@ -254,8 +280,129 @@ sendmail(i)
   console.log(" mail call");
 }
 
-//getting responce function
+//Adding or removing driver  function
 
+drivername="";
+removeuseremptyflag=false;
+
+addsample;
+
+addnewdriver(name)
+{
+  if(this.drivername == "")
+  {
+    this.removeuseremptyflag=true;    
+  }
+  else
+  {
+    this.addsample=
+    {
+      "name":name
+
+    }
+
+      this.removeuseremptyflag=false;
+      this.Fire.collection('Drivers').add(this.addsample);
+      this.drivername="";
+      this. openSnackBarsuccess("Driver Added Successfully...");
+    }
+
+
+}
+
+
+//removing old driver
+n=0;
+removedriver(drivername)
+{
+  if(this.drivername == "")
+  {
+    this.removeuseremptyflag=true;    
+  }
+  else
+  {
+    this.removeuseremptyflag=false;
+    for(this.n=0;this.n<this.driverlist.length;this.n++)
+      {
+        if(this.driverlist[this.n].name == drivername)
+        {
+          console.log(this.driverlist[this.n].name);
+        this.Fire.doc('Drivers/'+this.driverlist[this.n].id).delete();
+        } 
+      }
+    this.Fire.doc('Drivers/'+name).delete();
+    this.drivername="";
+    this. openSnackBarsuccess("Driver Remove Successfully...");
+  }
+  
+}
+
+///getting records
+records:Record[];
+getrecords()
+  {
+      this.fireService.getrecords().subscribe(actionArray =>{
+      this.records=actionArray.map(item=>{
+      return{
+        id: item.payload.doc.id,
+        ...item.payload.doc.data()  as Record
+      }
+     
+      });
+     // console.log(this.records);
+
+    })
+  }
+
+
+
+
+
+//function for download record file
+m;
+filename="DriverRecords";
+    Downloadrecords()
+    {
+    
+      
+      this.fireService.Downloadrecords().subscribe(
+        data=>saveAs(data,this.filename),
+        err=>console.log(err)
+      );
+
+      for(this.m=0;this.m<this.records.length;this.m++)
+      {
+        this.Fire.doc('Records/'+this.records[this.m].id).delete();
+          
+      }
+    this. openSnackBarsuccess("Downloading Records...");
+
+    }
+
+
+  //getting list of drivers
+  driverlist:Driver[];
+  getdriver()
+{
+  
+
+this.fireService.getdrivers().subscribe(actionArray =>{
+  this.driverlist=actionArray.map(item=>{
+    return{
+      id: item.payload.doc.id,
+      ...item.payload.doc.data()  as Driver
+    }
+    
+  });
+  console.log(this.driverlist);
+})
+
+   
+
+
+}
+
+ 
 
 
 }

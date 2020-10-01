@@ -2,9 +2,11 @@
   <mat-toolbar>
     <h2 >Waiting List</h2>
   </mat-toolbar>
-
-  <br>
   
+  
+  <br>
+  <div class="samplediv">
+  <br>
 <div *ngFor="let value of list;let i = index;">
   
     
@@ -31,6 +33,11 @@
 </div>
 </div>
 
+</div>
+
+
+
+
 
 
 
@@ -38,8 +45,10 @@
   <mat-toolbar>
     <h2>Selected List</h2>
   </mat-toolbar>
+  
   <br>
-  <br>
+  <div class="samplediv">
+    <br>
   <div *ngFor="let value of selected; let i = index; ">
     
     <input class="input2select" matInput  placeholder="&nbsp;{{i+1}}. &nbsp;{{value.firstname}}&nbsp;&nbsp;&nbsp;">
@@ -53,13 +62,30 @@
 
   <br>
   <br>
-  
+  </div>
   
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+<div class="div3">
+  <mat-toolbar>
+    <h2>Administration</h2>
+  </mat-toolbar>
+  <br>
+  <mat-form-field  class="adddriverinput" appearance="outline">
+    <input   matInput [(ngModel)]="drivername" placeholder="Driver Name">
+  </mat-form-field>
+  <br>
+  <small style="color: red;margin-inline-start: 5em;"  *ngIf="removeuseremptyflag">Please Enter Name </small>
+
+  <br>
+  <button mat-raised-button  class="adddriver" (click)="addnewdriver(drivername)" >Add Driver</button>
+
+  <button mat-raised-button  class="removedriver" (click)="removedriver(drivername)"  >Remove Driver</button>
+  <br>
+  <br>
+  <br>
+  <button mat-raised-button  class="getrecords" (click)="Downloadrecords()"  >Get Records</button>
+  
+</div>
+
 
